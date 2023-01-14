@@ -1,0 +1,129 @@
+:root {
+  --body-background-color: hsl(0 0% 90%);
+  --card-background-color: hsl(0 0% 100%);
+  --text-color: hsl(0 0% 15%);
+  --heading-color: hsl(0 0% 25%);
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  background-color: var(
+    --body-background-color,
+    minmax(min(100%, var(--min-cloumn-size)))
+  );
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--heading-color);
+  line-height: 1.1;
+}
+
+.auto-grid {
+  --min-cloumn-size: 225px;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  display: grid;
+  gap: clamp(1rem, 5vmax, 1.625rem);
+  grid-template-columns: repeat(auto-fit);
+}
+
+.wrapper {
+  --max-width: 55rem;
+  width: min(100% - 2rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.card {
+  padding: 1rem;
+  background-color: var(--card-background-color);
+  border-block-start: 0.5rem solid;
+  border-radius: 0.5rem;
+}
+
+.card > * {
+  margin: 0;
+}
+
+.card > *:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.color-picker > fieldset {
+  border: 0;
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+  background-color: #fff;
+  padding: 1rem 3rem;
+  margin-inline: auto;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.color-picker input[type="radio"] {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  outline: 3px solid var(--radio-color, currentColor);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+.color-picker input[type="radio"]#light {
+  --radio-color: rgb(222, 217, 219);
+}
+
+.color-picker input[type="radio"]#dark {
+  --radio-color: rgb(49, 45, 46);
+}
+.color-picker input[type="radio"]#green {
+  --radio-color: green;
+}
+.color-picker input[type="radio"]#blue {
+  --radio-color: blue;
+}
+.color-picker input[type="radio"]:checked {
+  background-color: var(--radio-color);
+}
+
+:root:has(#light:checked) {
+  --body-background-color: hsl(0 0% 90%);
+  --card-background-color: hsl(0 0% 100%);
+  --text-color: hsl(0 0% 15%);
+  --heading-color: hsl(0 0% 25%);
+}
+
+:root:has(#dark:checked) {
+  --body-background-color: rgb(3, 3, 3);
+  --card-background-color: rgb(2, 2, 2);
+  --text-color: rgb(241, 241, 241);
+  --heading-color: rgb(173, 168, 168);
+}
+
+:root:has(#green:checked) {
+  --body-background-color: rgb(110, 238, 153);
+  --card-background-color: rgb(151, 233, 165);
+  --text-color: rgb(22, 103, 40);
+  --heading-color: rgb(24, 109, 49);
+}
+
+:root:has(#blue:checked) {
+  --body-background-color: rgb(96, 118, 176);
+  --card-background-color: rgb(108, 150, 209);
+  --text-color: rgb(30, 37, 135);
+  --heading-color: rgb(25, 27, 182);
+}
